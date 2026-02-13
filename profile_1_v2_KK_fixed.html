@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Саяхатшы профилі • ШҚО</title>
+
+  <!-- Сайттың негізгі стильдері (тақырыптар + базалық компоненттер) -->
+  <link rel="stylesheet" href="quide_1.css" />
+
+  <link rel="stylesheet" href="profile_1_v2.css" />
+
+</head>
+
+<body>
+  <!-- Top bar -->
+  <div class="pp-topbar">
+    <div class="container">
+      <div class="pp-brand">
+        <!-- lotus.png файлын өз нұсқаңызға ауыстыра аласыз. Файл болмаса — осылай қалдырыңыз. -->
+        <img class="pp-logo" src="lotus.png" alt="Логотип" onerror="this.style.display='none'" />
+        <div>
+          <h1>Саяхатшы профилі</h1>
+          <p>Шығыс Қазақстан • жекелендірілген ұсыныстар</p>
+        </div>
+      </div>
+
+      <div class="pp-nav">
+        <a class="pp-link" href="index_personalized.multistop.html" title="Басты бетке қайту">← Басты бетке</a>
+        <button class="profile-btn" id="themeToggle" type="button">Тақырып</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="pp-screen">
+    <div class="pp-grid">
+      <!-- LEFT: Builder -->
+      <section class="pp-card" aria-labelledby="ppMainTitle">
+        <div class="pp-card-head">
+          <div>
+            <div class="pp-kicker">шағын сауалнама</div>
+            <h2 class="pp-title" id="ppMainTitle">Профиліңізді саяхат стиліңізге сай баптаңыз</h2>
+            <p class="pp-sub">
+              Мақсатыңызды, деңгейіңізді, ұзақтығын, көлікті және қызығушылықтарыңызды таңдаңыз. Бұл деректер
+              <strong>localStorage.userProfile</strong> ішінде сақталады және ұсыныстар үшін басты бетте пайдаланылады.
+            </p>
+          </div>
+
+          <div class="pp-actions">
+            <button class="profile-btn" id="ppSave" type="button">Сақтау</button>
+            <button class="profile-btn ghost" id="ppReset" type="button">Қалпына келтіру</button>
+          </div>
+        </div>
+
+        <div class="pp-body">
+          <!-- Contact / profile details -->
+          <div class="pp-section" aria-labelledby="ppUser">
+            <h3 id="ppUser">0) Профиль деректері <span class="pp-kicker" style="margin:0; opacity:.8;">(міндетті емес)</span></h3>
+            <p class="pp-hint">Атыңыз бен байланыс деректеріңіз таңдауларыңызбен бірге сақталады және жекелендіру/кері байланыс үшін қолданылуы мүмкін.</p>
+
+            <div class="pp-form" role="group" aria-label="Байланыс деректері">
+              <div class="pp-field">
+                <label for="ppName">Аты</label>
+                <input class="pp-input" id="ppName" type="text" placeholder="Мысалы: Кирилл" autocomplete="name" />
+              </div>
+
+              <div class="pp-field">
+                <label for="ppPhone">Телефон</label>
+                <input class="pp-input" id="ppPhone" type="tel" placeholder="+7 ..." autocomplete="tel" inputmode="tel" />
+              </div>
+
+              <div class="pp-field">
+                <label for="ppEmail">Электрондық пошта</label>
+                <input class="pp-input" id="ppEmail" type="email" placeholder="name@example.com" autocomplete="email" inputmode="email" />
+              </div>
+
+              <div class="pp-field">
+                <label for="ppTelegram">Telegram</label>
+                <input class="pp-input" id="ppTelegram" type="text" placeholder="@username (қалау бойынша)" autocomplete="off" />
+              </div>
+
+              <div class="pp-field full">
+                <label for="ppNotes">Ескертпе</label>
+                <textarea class="pp-textarea" id="ppNotes" placeholder="Мысалы: қиын өрлеусіз бағыттар керек; маған таңғы шапақ пен көлдер ұнайды"></textarea>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Goal -->
+          <div class="pp-section" aria-labelledby="ppGoal">
+            <h3 id="ppGoal">1) Саяхат мақсаты <span class="pp-kicker" style="margin:0; opacity:.8;">(біреуін таңдаңыз)</span></h3>
+            <p class="pp-hint">Бұл сізге не маңызды екенін түсінуге көмектеседі: демалыс, отбасы, шытырман, фото немесе балық аулау.</p>
+
+            <div class="pp-options" role="radiogroup" aria-label="Саяхат мақсаты">
+              <button class="pp-opt" type="button" data-group="goal" data-value="relax" role="radio" aria-checked="false">
+                <div class="pp-ico">🧘</div>
+                <div><strong>Relax</strong><span>Тыныштық, табиғат, жайлылық</span></div>
+              </button>
+              <button class="pp-opt" type="button" data-group="goal" data-value="family" role="radio" aria-checked="false">
+                <div class="pp-ico">👨‍👩‍👧‍👦</div>
+                <div><strong>Family</strong><span>Қауіпсіз, жайлы, артық жүктемесіз</span></div>
+              </button>
+              <button class="pp-opt" type="button" data-group="goal" data-value="trekking" role="radio" aria-checked="false">
+                <div class="pp-ico">🥾</div>
+                <div><strong>Trekking</strong><span>Соқпақтар, биіктік жинау, белсенділік</span></div>
+              </button>
+              <button class="pp-opt" type="button" data-group="goal" data-value="photo" role="radio" aria-checked="false">
+                <div class="pp-ico">📸</div>
+                <div><strong>Photo</strong><span>Көрініс нүктелері, таңғы шапақ, кадрлар</span></div>
+              </button>
+              <button class="pp-opt" type="button" data-group="goal" data-value="fishing" role="radio" aria-checked="false">
+                <div class="pp-ico">🎣</div>
+                <div><strong>Fishing</strong><span>Су айдындары, балық аулау орындары</span></div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Level -->
+          <div class="pp-section" aria-labelledby="ppLevel">
+            <h3 id="ppLevel">2) Деңгей <span class="pp-kicker" style="margin:0; opacity:.8;">(выберите один)</span></h3>
+            <p class="pp-hint">Қай бағыттар жоғары көрсетілетініне әсер етеді: «жаңадан бастаушыға қауіпсіз» немесе «қиынырақ, бірақ әсерлі».</p>
+
+            <div class="pp-options cols-2" role="radiogroup" aria-label="Деңгей">
+              <button class="pp-opt" type="button" data-group="level" data-value="beginner" role="radio" aria-checked="false">
+                <div class="pp-ico">🙂</div>
+                <div><strong>Beginner</strong><span>Жеңіл бағыттар, тәуекелі аз</span></div>
+              </button>
+              <button class="pp-opt" type="button" data-group="level" data-value="medium" role="radio" aria-checked="false">
+                <div class="pp-ico">💪</div>
+                <div><strong>Medium</strong><span>Орташа жүктеме, соқпақтар</span></div>
+              </button>
+              <button class="pp-opt" type="button" data-group="level" data-value="advanced" role="radio" aria-checked="false">
+                <div class="pp-ico">🧗</div>
+                <div><strong>Advanced</strong><span>Қиынырақ, бірақ ең әсерлі</span></div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Duration -->
+          <div class="pp-section" aria-labelledby="ppDuration">
+            <h3 id="ppDuration">3) Саяхат ұзақтығы <span class="pp-kicker" style="margin:0; opacity:.8;">(біреуін таңдаңыз)</span></h3>
+            <p class="pp-hint">Уақытыңызға сыйып үлгеретін локацияларды жоғары шығару үшін.</p>
+
+            <div class="pp-options cols-2" role="radiogroup" aria-label="Саяхат ұзақтығы">
+              <button class="pp-opt" type="button" data-group="duration" data-value="1day" role="radio" aria-checked="false">
+                <div class="pp-ico">🕒</div>
+                <div><strong>1 day</strong><span>Бір күнде барып, сол күні қайту</span></div>
+              </button>
+              <button class="pp-opt" type="button" data-group="duration" data-value="weekend" role="radio" aria-checked="false">
+                <div class="pp-ico">📅</div>
+                <div><strong>Weekend</strong><span>Сенбі/жексенбі, қысқа сапар</span></div>
+              </button>
+              <button class="pp-opt" type="button" data-group="duration" data-value="3to5" role="radio" aria-checked="false">
+                <div class="pp-ico">🧳</div>
+                <div><strong>3–5 days</strong><span>Толыққанды сапар</span></div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Transport -->
+          <div class="pp-section" aria-labelledby="ppTransport">
+            <h3 id="ppTransport">4) Көлік <span class="pp-kicker" style="margin:0; opacity:.8;">(выберите один)</span></h3>
+            <p class="pp-hint">Көлігіңізбен нақты жете алатын жерлерді көрсетеміз.</p>
+
+            <div class="pp-options cols-2" role="radiogroup" aria-label="Көлік">
+              <button class="pp-opt" type="button" data-group="transport" data-value="car" role="radio" aria-checked="false">
+                <div class="pp-ico">🚗</div>
+                <div><strong>Car</strong><span>Еркін логистика</span></div>
+              </button>
+              <button class="pp-opt" type="button" data-group="transport" data-value="public" role="radio" aria-checked="false">
+                <div class="pp-ico">🚌</div>
+                <div><strong>Public</strong><span>Автобус/пойыз + жаяу</span></div>
+              </button>
+              <button class="pp-opt" type="button" data-group="transport" data-value="tour" role="radio" aria-checked="false">
+                <div class="pp-ico">🧑‍🏫</div>
+                <div><strong>Tour</strong><span>Гидпен / ұйымдастырылған тур</span></div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Interests -->
+          <div class="pp-section" aria-labelledby="ppInterests">
+            <h3 id="ppInterests">5) Қызығушылықтар <span class="pp-kicker" style="margin:0; opacity:.8;">(бірнешеуін таңдауға болады)</span></h3>
+            <p class="pp-hint">Қызығушылықтар сәйкес келсе — ұсыныстарда соғұрлым жоғары болады.</p>
+
+            <div class="pp-interests" aria-label="Қызығушылықтар">
+              <button class="pp-interest" type="button" data-interest="lakes">🏞️ Көлдер</button>
+              <button class="pp-interest" type="button" data-interest="mountains">⛰️ Таулар</button>
+              <button class="pp-interest" type="button" data-interest="waterfalls">💦 Сарқырамалар</button>
+              <button class="pp-interest" type="button" data-interest="canyons">🪨 Каньондар</button>
+              <button class="pp-interest" type="button" data-interest="forests">🌲 Ормандар/тайга</button>
+              <button class="pp-interest" type="button" data-interest="rivers">🌊 Өзендер</button>
+              <button class="pp-interest" type="button" data-interest="plateaus">🗻 Үстірттер</button>
+              <button class="pp-interest" type="button" data-interest="steppes">🌾 Далалар/шалғындар</button>
+              <button class="pp-interest" type="button" data-interest="glaciers">❄️ Мұздықтар</button>
+            </div>
+
+            <div class="pp-small">Кеңес: 2–4 қызығушылық таңдаңыз — сонда ұсыныстар нақтырақ болады және «бұлдырланбайды».</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT: Summary -->
+      <aside class="pp-side">
+        <section class="pp-card">
+          <div class="pp-profilebox">
+            <div class="pp-avatar" aria-hidden="true">👤</div>
+            <h3  id="ppProfileTitle" >Сіздің профиліңіз</h3>
+            <div id="ppStatus" class="pp-status warn">⚠️ Сақталмады</div>
+
+            <div id="ppSummaryChips" class="pp-chips" aria-live="polite"></div>
+
+            <p class="pp-note" id="ppSummaryText">
+              Толтырыңыз да <strong>«Сақтау»</strong> басыңыз. Содан кейін басты бетті ашыңыз — «Сізге ұсынамыз» бөлімі таңдауыңызға бейімделеді.
+            </p>
+
+            <div style="margin-top: 14px; display:flex; gap:10px; flex-wrap:wrap;">
+              <a class="pp-link" href="index.html">Басты бетті ашу</a>
+              <button class="profile-btn ghost" id="ppClearOnlyInterests" type="button">Қызығушылықтарды тазарту</button>
+            </div>
+          </div>
+        </section>
+
+       
+      </aside>
+    </div>
+  </main>
+
+  <div class="pp-toast" id="ppToast" role="status" aria-live="polite"></div>
+
+  <script>
+    // ===== Theme (same behavior as main page) =====
+    const themeBtn = document.getElementById("themeToggle");
+
+    function applyThemeFromStorage() {
+      if (localStorage.getItem("theme") === "green") {
+        document.body.classList.add("green");
+      } else {
+        document.body.classList.remove("green");
+      }
+    }
+
+    if (themeBtn) {
+      themeBtn.addEventListener("click", () => {
+        const isGreen = document.body.classList.toggle("green");
+        localStorage.setItem("theme", isGreen ? "green" : "dark");
+      });
+    }
+
+    applyThemeFromStorage();
+
+    // ===== Profile storage =====
+    const STORAGE_KEY = "userProfile";
+
+    const LABELS = {
+      goal: {
+        relax: "Relax",
+        family: "Family",
+        trekking: "Trekking",
+        photo: "Photo",
+        fishing: "Fishing",
+      },
+      level: {
+        beginner: "Beginner",
+        medium: "Medium",
+        advanced: "Advanced",
+      },
+      duration: {
+        "1day": "1 day",
+        weekend: "Weekend",
+        "3to5": "3–5 days",
+      },
+      transport: {
+        car: "Car",
+        public: "Public",
+        tour: "Tour",
+      },
+      interests: {
+        lakes: "Көлдер",
+        mountains: "Таулар",
+        waterfalls: "Сарқырамалар",
+        canyons: "Каньондар",
+        forests: "Ормандар/тайга",
+        rivers: "Өзендер",
+        plateaus: "Үстірттер",
+        steppes: "Далалар/шалғындар",
+        glaciers: "Мұздықтар",
+      }
+    };
+
+    function safeParse(json) {
+      try { return JSON.parse(json); } catch { return null; }
+    }
+
+    function getProfile() {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      const p = raw ? safeParse(raw) : null;
+      if (!p || typeof p !== "object") return null;
+      return {
+        // contact / profile details (optional)
+        name: typeof p.name === "string" ? p.name : "",
+        phone: typeof p.phone === "string" ? p.phone : "",
+        email: typeof p.email === "string" ? p.email : "",
+        telegram: typeof p.telegram === "string" ? p.telegram : "",
+        notes: typeof p.notes === "string" ? p.notes : "",
+
+        // travel preferences
+        goal: p.goal || "",
+        level: p.level || "",
+        duration: p.duration || "",
+        transport: p.transport || "",
+        interests: Array.isArray(p.interests) ? p.interests : [],
+      };
+    }
+
+    function setProfile(p) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(p));
+    }
+
+    function clearProfile() {
+      localStorage.removeItem(STORAGE_KEY);
+    }
+
+    // ===== UI state =====
+    const state = {
+      // contact / profile details
+      name: "",
+      phone: "",
+      email: "",
+      telegram: "",
+      notes: "",
+
+      // travel preferences
+      goal: "",
+      level: "",
+      duration: "",
+      transport: "",
+      interests: new Set(),
+      saved: false,
+    };
+
+    const $toast = document.getElementById("ppToast");
+    const $status = document.getElementById("ppStatus");
+    const $chips = document.getElementById("ppSummaryChips");
+    const $summary = document.getElementById("ppSummaryText");
+    const $profileTitle = document.getElementById("ppProfileTitle");
+
+
+    // Contact inputs (optional)
+    const $name = document.getElementById("ppName");
+    const $phone = document.getElementById("ppPhone");
+    const $email = document.getElementById("ppEmail");
+    const $telegram = document.getElementById("ppTelegram");
+    const $notes = document.getElementById("ppNotes");
+
+    function safeSet(el, value) {
+      if (!el) return;
+      const v = value ?? "";
+      if (el.value !== v) el.value = v;
+    }
+
+    function syncInputsFromState() {
+      safeSet($name, state.name);
+      safeSet($phone, state.phone);
+      safeSet($email, state.email);
+      safeSet($telegram, state.telegram);
+      safeSet($notes, state.notes);
+    }
+
+    function toast(msg) {
+      if (!$toast) return;
+      $toast.textContent = msg;
+      $toast.classList.add("show");
+      window.clearTimeout(toast._t);
+      toast._t = window.setTimeout(() => $toast.classList.remove("show"), 1600);
+    }
+
+    function updateSelectedUI() {
+        syncInputsFromState();
+        // Тақырып: "Сіздің профиліңіз" орнына атын көрсету
+        if ($profileTitle) {
+            const n = (state.name || "").trim();
+            $profileTitle.textContent = n ? n : "Сіздің профиліңіз";
+        }
+
+      // Single-choice groups
+      document.querySelectorAll(".pp-opt[data-group]").forEach(btn => {
+        const group = btn.getAttribute("data-group");
+        const val = btn.getAttribute("data-value");
+        const on = state[group] === val;
+        btn.classList.toggle("is-selected", on);
+        btn.setAttribute("aria-checked", on ? "true" : "false");
+      });
+
+      // Interests
+      document.querySelectorAll(".pp-interest[data-interest]").forEach(btn => {
+        const tag = btn.getAttribute("data-interest");
+        btn.classList.toggle("is-selected", state.interests.has(tag));
+        btn.setAttribute("aria-pressed", state.interests.has(tag) ? "true" : "false");
+      });
+
+      // Summary chips
+      const chips = [];
+      // Contact chips (optional)
+    
+      if (state.phone) chips.push(["Телефон", state.phone]);
+      if (state.email) chips.push(["Email", state.email]);
+      if (state.telegram) chips.push(["Telegram", state.telegram]);
+      if (state.goal) chips.push(["Мақсат", LABELS.goal[state.goal] || state.goal]);
+      if (state.level) chips.push(["Деңгей", LABELS.level[state.level] || state.level]);
+      if (state.duration) chips.push(["Ұзақтығы", LABELS.duration[state.duration] || state.duration]);
+      if (state.transport) chips.push(["Көлік", LABELS.transport[state.transport] || state.transport]);
+
+      const interests = Array.from(state.interests).map(k => LABELS.interests[k] || k);
+      if (interests.length) chips.push(["Қызығушылықтар", interests.join(", ")]);
+
+      $chips.innerHTML = chips.length
+        ? chips.map(([k, v]) => `<span class="pp-chip"><em>${k}:</em> ${escapeHTML(v)}</span>`).join("")
+        : "<span class=\"pp-note\">Әзірге ештеңе таңдалмаған.</span>";
+
+      // Status
+      const complete = Boolean(state.goal && state.level && state.duration && state.transport);
+      const hasAny = Boolean(state.name || state.phone || state.email || state.telegram || state.notes || state.goal || state.level || state.duration || state.transport || state.interests.size);
+
+      if (state.saved) {
+        $status.className = "pp-status ok";
+        $status.textContent = "✅ Сақталды";
+        $summary.innerHTML = complete
+          ? "Профиль сақталды. Енді басты бетті ашыңыз — ұсыныстар таңдауыңызға бейімделеді."
+          : "Профиль сақталды, бірақ толық толтырылмаған. Дәлдігі үшін толықтыруға болады.";
+      } else {
+        $status.className = "pp-status " + (hasAny ? "warn" : "warn");
+        $status.textContent = hasAny ? "⚠️ Сақталмады" : "⚠️ Не заполнено";
+        $summary.innerHTML = hasAny
+          ? "Сіз параметрлерді таңдадыңыз, бірақ әлі <strong>«Сақтау»</strong> батырмасын баспадыңыз."
+          : "Толтырыңыз да <strong>«Сақтау»</strong> басыңыз.";
+      }
+    }
+
+    function escapeHTML(str) {
+      return String(str)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function loadIntoState(p) {
+      // contact / profile details
+      state.name = p?.name || "";
+      state.phone = p?.phone || "";
+      state.email = p?.email || "";
+      state.telegram = p?.telegram || "";
+      state.notes = p?.notes || "";
+
+      // travel preferences
+      state.goal = p?.goal || "";
+      state.level = p?.level || "";
+      state.duration = p?.duration || "";
+      state.transport = p?.transport || "";
+      state.interests = new Set(Array.isArray(p?.interests) ? p.interests : []);
+      state.saved = Boolean(p);
+
+      syncInputsFromState();
+    }
+
+    // ===== Event wiring =====
+    function wireInput(el, key) {
+      if (!el) return;
+      el.addEventListener("input", () => {
+        state[key] = el.value;
+        state.saved = false;
+        updateSelectedUI();
+      });
+    }
+
+    wireInput($name, "name");
+    wireInput($phone, "phone");
+    wireInput($email, "email");
+    wireInput($telegram, "telegram");
+    wireInput($notes, "notes");
+
+    document.querySelectorAll(".pp-opt[data-group]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const group = btn.getAttribute("data-group");
+        const val = btn.getAttribute("data-value");
+        // toggle off if clicked again
+        state[group] = (state[group] === val) ? "" : val;
+        state.saved = false;
+        updateSelectedUI();
+      });
+    });
+
+    document.querySelectorAll(".pp-interest[data-interest]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const tag = btn.getAttribute("data-interest");
+        if (state.interests.has(tag)) state.interests.delete(tag);
+        else state.interests.add(tag);
+        state.saved = false;
+        updateSelectedUI();
+      });
+    });
+
+    document.getElementById("ppSave")?.addEventListener("click", () => {
+      const profile = {
+        // contact / profile details
+        name: state.name.trim(),
+        phone: state.phone.trim(),
+        email: state.email.trim(),
+        telegram: state.telegram.trim(),
+        notes: state.notes.trim(),
+
+        // travel preferences
+        goal: state.goal,
+        level: state.level,
+        duration: state.duration,
+        transport: state.transport,
+        interests: Array.from(state.interests),
+      };
+      setProfile(profile);
+      state.saved = true;
+      updateSelectedUI();
+      toast("Профиль сақталды");
+    });
+
+    document.getElementById("ppReset")?.addEventListener("click", () => {
+      clearProfile();
+      loadIntoState(null);
+      updateSelectedUI();
+      toast("Профиль қалпына келтірілді");
+    });
+
+    document.getElementById("ppClearOnlyInterests")?.addEventListener("click", () => {
+      state.interests.clear();
+      state.saved = false;
+      updateSelectedUI();
+      toast("Қызығушылықтар тазартылды");
+    });
+
+    // Initial load
+    loadIntoState(getProfile());
+    updateSelectedUI();
+  </script>
+</body>
+</html>

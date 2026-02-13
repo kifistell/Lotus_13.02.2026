@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Traveler Profile • East Kazakhstan</title>
+
+  <!-- Main site styles (themes + base components) -->
+  <link rel="stylesheet" href="quide_1.css" />
+
+  <link rel="stylesheet" href="profile_1_v2.css" />
+
+</head>
+
+<body>
+  <!-- Top bar -->
+  <div class="pp-topbar">
+    <div class="container">
+      <div class="pp-brand">
+        <!-- You can replace this with your lotus.png. If the file is missing, leave as is. -->
+        <img class="pp-logo" src="lotus.png" alt="Logo" onerror="this.style.display='none'" />
+        <div>
+          <h1>Traveler Profile</h1>
+          <p>East Kazakhstan • personalized recommendations</p>
+        </div>
+      </div>
+
+      <div class="pp-nav">
+          <a class="pp-link" href="index_personalized.multistop.html" title="Back to home">← Home</a>
+          <button  id="themeToggle" class="pp-link" type="button">Theme</button>
+          <!-- Language switch (RU ▾) -->
+          <div class="lang-switch" aria-label="Language selector">
+              <button class="lang-btn" type="button" id="langBtn" aria-haspopup="listbox" aria-expanded="false">
+                  <span class="lang-code" id="langCode">EN</span>
+                  <span class="lang-caret" aria-hidden="true">▾</span>
+              </button>
+
+              <div class="lang-menu" role="listbox" aria-labelledby="langBtn">
+                  <!-- Поменяй href на свои имена файлов -->
+                  <a class="lang-item" role="option" href="profile_1_v2.html" data-lang="RU">RU</a>
+                  <a class="lang-item" role="option" href="profile_1_v2_KK.html" data-lang="KZ">KZ</a>
+                  <a class="lang-item" role="option" href="profile_1_v2_EN.html" data-lang="EN">EN</a>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="pp-screen">
+    <div class="pp-grid">
+      <!-- LEFT: Builder -->
+      <section class="pp-card" aria-labelledby="ppMainTitle">
+        <div class="pp-card-head">
+          <div>
+            <div class="pp-kicker">mini questionnaire</div>
+            <h2 class="pp-title" id="ppMainTitle">Set up your profile to match your travel style</h2>
+            <p class="pp-sub">
+              Choose your goal, level, duration, transport, and interests. This data is saved in
+              <strong>localStorage.userProfile</strong> and will be used on the main page for recommendations.
+            </p>
+          </div>
+
+          <div class="pp-actions">
+            <button class="profile-btn" id="ppSave" type="button">Save</button>
+            <button class="profile-btn ghost" id="ppReset" type="button">Reset</button>
+          </div>
+        </div>
+
+        <div class="pp-body">
+          <!-- Contact / profile details -->
+          <div class="pp-section" aria-labelledby="ppUser">
+            <h3 id="ppUser">0) Profile details <span class="pp-kicker" style="margin:0; opacity:.8;">(optional)</span></h3>
+            <p class="pp-hint">Your name and contacts are saved together with your choices and may be used for personalization/feedback.</p>
+
+            <div class="pp-form" role="group" aria-label="Contact details">
+              <div class="pp-field">
+                <label for="ppName">Name</label>
+                <input class="pp-input" id="ppName" type="text" placeholder="For example: Kirill" autocomplete="name" />
+              </div>
+
+              <div class="pp-field">
+                <label for="ppPhone">Phone</label>
+                <input class="pp-input" id="ppPhone" type="tel" placeholder="+7 ..." autocomplete="tel" inputmode="tel" />
+              </div>
+
+              <div class="pp-field">
+                <label for="ppEmail">Email</label>
+                <input class="pp-input" id="ppEmail" type="email" placeholder="name@example.com" autocomplete="email" inputmode="email" />
+              </div>
+
+              <div class="pp-field">
+                <label for="ppTelegram">Telegram</label>
+                <input class="pp-input" id="ppTelegram" type="text" placeholder="@username (optional)" autocomplete="off" />
+              </div>
+
+              <div class="pp-field full">
+                <label for="ppNotes">Notes</label>
+                <textarea class="pp-textarea" id="ppNotes" placeholder="For example: I want routes without hard climbs; I like sunrises and lakes"></textarea>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Goal -->
+          <div class="pp-section" aria-labelledby="ppGoal">
+            <h3 id="ppGoal">1) Trip goal <span class="pp-kicker" style="margin:0; opacity:.8;">(choose one)</span></h3>
+            <p class="pp-hint">This helps us understand what matters most to you: relaxation, family, adventure, photography, or fishing.</p>
+
+            <div class="pp-options" role="radiogroup" aria-label="Trip goal">
+              <button class="pp-opt" type="button" data-group="goal" data-value="relax" role="radio" aria-checked="false">
+                <div class="pp-ico">🧘</div>
+                <div><strong>Relax</strong><span>Quiet, nature, comfort</span></div>
+              </button>
+              <button class="pp-opt" type="button" data-group="goal" data-value="family" role="radio" aria-checked="false">
+                <div class="pp-ico">👨‍👩‍👧‍👦</div>
+                <div><strong>Family</strong><span>Safe, comfortable, no overload</span></div>
+              </button>
+              <button class="pp-opt" type="button" data-group="goal" data-value="trekking" role="radio" aria-checked="false">
+                <div class="pp-ico">🥾</div>
+                <div><strong>Trekking</strong><span>Trails, elevation gain, activity</span></div>
+              </button>
+              <button class="pp-opt" type="button" data-group="goal" data-value="photo" role="radio" aria-checked="false">
+                <div class="pp-ico">📸</div>
+                <div><strong>Photo</strong><span>Viewpoints, sunrises, shots</span></div>
+              </button>
+              <button class="pp-opt" type="button" data-group="goal" data-value="fishing" role="radio" aria-checked="false">
+                <div class="pp-ico">🎣</div>
+                <div><strong>Fishing</strong><span>Water bodies, fishing spots</span></div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Level -->
+          <div class="pp-section" aria-labelledby="ppLevel">
+            <h3 id="ppLevel">2) Level <span class="pp-kicker" style="margin:0; opacity:.8;">(choose one)</span></h3>
+            <p class="pp-hint">Affects which routes are prioritized: “safe for beginners” or “harder but spectacular”.</p>
+
+            <div class="pp-options cols-2" role="radiogroup" aria-label="Level">
+              <button class="pp-opt" type="button" data-group="level" data-value="beginner" role="radio" aria-checked="false">
+                <div class="pp-ico">🙂</div>
+                <div><strong>Beginner</strong><span>Easy routes, minimal risk</span></div>
+              </button>
+              <button class="pp-opt" type="button" data-group="level" data-value="medium" role="radio" aria-checked="false">
+                <div class="pp-ico">💪</div>
+                <div><strong>Medium</strong><span>Moderate effort, trails</span></div>
+              </button>
+              <button class="pp-opt" type="button" data-group="level" data-value="advanced" role="radio" aria-checked="false">
+                <div class="pp-ico">🧗</div>
+                <div><strong>Advanced</strong><span>Harder, but most impressive</span></div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Duration -->
+          <div class="pp-section" aria-labelledby="ppDuration">
+            <h3 id="ppDuration">3) Trip duration <span class="pp-kicker" style="margin:0; opacity:.8;">(choose one)</span></h3>
+            <p class="pp-hint">So we can prioritize locations you can realistically visit in your time.</p>
+
+            <div class="pp-options cols-2" role="radiogroup" aria-label="Trip duration">
+              <button class="pp-opt" type="button" data-group="duration" data-value="1day" role="radio" aria-checked="false">
+                <div class="pp-ico">🕒</div>
+                <div><strong>1 day</strong><span>Go and return the same day</span></div>
+              </button>
+              <button class="pp-opt" type="button" data-group="duration" data-value="weekend" role="radio" aria-checked="false">
+                <div class="pp-ico">📅</div>
+                <div><strong>Weekend</strong><span>Sat/Sun, short trip</span></div>
+              </button>
+              <button class="pp-opt" type="button" data-group="duration" data-value="3to5" role="radio" aria-checked="false">
+                <div class="pp-ico">🧳</div>
+                <div><strong>3–5 days</strong><span>Full trip</span></div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Transport -->
+          <div class="pp-section" aria-labelledby="ppTransport">
+            <h3 id="ppTransport">4) Transport <span class="pp-kicker" style="margin:0; opacity:.8;">(choose one)</span></h3>
+            <p class="pp-hint">We’ll show places you can realistically reach with your transport.</p>
+
+            <div class="pp-options cols-2" role="radiogroup" aria-label="Transport">
+              <button class="pp-opt" type="button" data-group="transport" data-value="car" role="radio" aria-checked="false">
+                <div class="pp-ico">🚗</div>
+                <div><strong>Car</strong><span>Flexible logistics</span></div>
+              </button>
+              <button class="pp-opt" type="button" data-group="transport" data-value="public" role="radio" aria-checked="false">
+                <div class="pp-ico">🚌</div>
+                <div><strong>Public</strong><span>Bus/train + walking</span></div>
+              </button>
+              <button class="pp-opt" type="button" data-group="transport" data-value="tour" role="radio" aria-checked="false">
+                <div class="pp-ico">🧑‍🏫</div>
+                <div><strong>Tour</strong><span>With a guide / organized tour</span></div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Interests -->
+          <div class="pp-section" aria-labelledby="ppInterests">
+            <h3 id="ppInterests">5) Interests <span class="pp-kicker" style="margin:0; opacity:.8;">(choose multiple)</span></h3>
+            <p class="pp-hint">The more your interests match, the higher the recommendation rank.</p>
+
+            <div class="pp-interests" aria-label="Interests">
+              <button class="pp-interest" type="button" data-interest="lakes">🏞️ Lakes</button>
+              <button class="pp-interest" type="button" data-interest="mountains">⛰️ Mountains</button>
+              <button class="pp-interest" type="button" data-interest="waterfalls">💦 Waterfalls</button>
+              <button class="pp-interest" type="button" data-interest="canyons">🪨 Canyons</button>
+              <button class="pp-interest" type="button" data-interest="forests">🌲 Forests/taiga</button>
+              <button class="pp-interest" type="button" data-interest="rivers">🌊 Rivers</button>
+              <button class="pp-interest" type="button" data-interest="plateaus">🗻 Plateaus</button>
+              <button class="pp-interest" type="button" data-interest="steppes">🌾 Steppes/meadows</button>
+              <button class="pp-interest" type="button" data-interest="glaciers">❄️ Glaciers</button>
+            </div>
+
+            <div class="pp-small">Tip: choose 2–4 interests so recommendations stay precise and not “blurred”.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT: Summary -->
+      <aside class="pp-side">
+        <section class="pp-card">
+          <div class="pp-profilebox">
+            <div class="pp-avatar" aria-hidden="true">👤</div>
+            <h3  id="ppProfileTitle" >Your profile</h3>
+            <div id="ppStatus" class="pp-status warn">⚠️ Not saved</div>
+
+            <div id="ppSummaryChips" class="pp-chips" aria-live="polite"></div>
+
+            <p class="pp-note" id="ppSummaryText">
+              Fill in the form and click <strong>“Save”</strong>. Then open the main page — the “Recommended for you” block will adapt.
+            </p>
+
+            <div style="margin-top: 14px; display:flex; gap:10px; flex-wrap:wrap;">
+              <a class="pp-link" href="index.html">Open main page</a>
+              <button class="profile-btn ghost" id="ppClearOnlyInterests" type="button">Clear interests</button>
+            </div>
+          </div>
+        </section>
+
+       
+      </aside>
+    </div>
+  </main>
+
+  <div class="pp-toast" id="ppToast" role="status" aria-live="polite"></div>
+
+  <script>
+    // ===== Theme (same behavior as main page) =====
+    const themeBtn = document.getElementById("themeToggle");
+
+    function applyThemeFromStorage() {
+      if (localStorage.getItem("theme") === "green") {
+        document.body.classList.add("green");
+      } else {
+        document.body.classList.remove("green");
+      }
+    }
+
+    if (themeBtn) {
+      themeBtn.addEventListener("click", () => {
+        const isGreen = document.body.classList.toggle("green");
+        localStorage.setItem("theme", isGreen ? "green" : "dark");
+      });
+    }
+
+    applyThemeFromStorage();
+
+    // ===== Profile storage =====
+    const STORAGE_KEY = "userProfile";
+
+    const LABELS = {
+      goal: {
+        relax: "Relax",
+        family: "Family",
+        trekking: "Trekking",
+        photo: "Photo",
+        fishing: "Fishing",
+      },
+      level: {
+        beginner: "Beginner",
+        medium: "Medium",
+        advanced: "Advanced",
+      },
+      duration: {
+        "1day": "1 day",
+        weekend: "Weekend",
+        "3to5": "3–5 days",
+      },
+      transport: {
+        car: "Car",
+        public: "Public",
+        tour: "Tour",
+      },
+      interests: {
+        lakes: "Lakes",
+        mountains: "Mountains",
+        waterfalls: "Waterfalls",
+        canyons: "Canyons",
+        forests: "Forests/taiga",
+        rivers: "Rivers",
+        plateaus: "Plateaus",
+        steppes: "Steppes/meadows",
+        glaciers: "Glaciers",
+      }
+    };
+
+    function safeParse(json) {
+      try { return JSON.parse(json); } catch { return null; }
+    }
+
+    function getProfile() {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      const p = raw ? safeParse(raw) : null;
+      if (!p || typeof p !== "object") return null;
+      return {
+        // contact / profile details (optional)
+        name: typeof p.name === "string" ? p.name : "",
+        phone: typeof p.phone === "string" ? p.phone : "",
+        email: typeof p.email === "string" ? p.email : "",
+        telegram: typeof p.telegram === "string" ? p.telegram : "",
+        notes: typeof p.notes === "string" ? p.notes : "",
+
+        // travel preferences
+        goal: p.goal || "",
+        level: p.level || "",
+        duration: p.duration || "",
+        transport: p.transport || "",
+        interests: Array.isArray(p.interests) ? p.interests : [],
+      };
+    }
+
+    function setProfile(p) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(p));
+    }
+
+    function clearProfile() {
+      localStorage.removeItem(STORAGE_KEY);
+    }
+
+    // ===== UI state =====
+    const state = {
+      // contact / profile details
+      name: "",
+      phone: "",
+      email: "",
+      telegram: "",
+      notes: "",
+
+      // travel preferences
+      goal: "",
+      level: "",
+      duration: "",
+      transport: "",
+      interests: new Set(),
+      saved: false,
+    };
+
+    const $toast = document.getElementById("ppToast");
+    const $status = document.getElementById("ppStatus");
+    const $chips = document.getElementById("ppSummaryChips");
+    const $summary = document.getElementById("ppSummaryText");
+    const $profileTitle = document.getElementById("ppProfileTitle");
+
+
+    // Contact inputs (optional)
+    const $name = document.getElementById("ppName");
+    const $phone = document.getElementById("ppPhone");
+    const $email = document.getElementById("ppEmail");
+    const $telegram = document.getElementById("ppTelegram");
+    const $notes = document.getElementById("ppNotes");
+
+    function safeSet(el, value) {
+      if (!el) return;
+      const v = value ?? "";
+      if (el.value !== v) el.value = v;
+    }
+
+    function syncInputsFromState() {
+      safeSet($name, state.name);
+      safeSet($phone, state.phone);
+      safeSet($email, state.email);
+      safeSet($telegram, state.telegram);
+      safeSet($notes, state.notes);
+    }
+
+    function toast(msg) {
+      if (!$toast) return;
+      $toast.textContent = msg;
+      $toast.classList.add("show");
+      window.clearTimeout(toast._t);
+      toast._t = window.setTimeout(() => $toast.classList.remove("show"), 1600);
+    }
+
+    function updateSelectedUI() {
+        syncInputsFromState();
+        // Title: show name instead of "Your profile"
+        if ($profileTitle) {
+            const n = (state.name || "").trim();
+            $profileTitle.textContent = n ? n : "Your profile";
+        }
+
+      // Single-choice groups
+      document.querySelectorAll(".pp-opt[data-group]").forEach(btn => {
+        const group = btn.getAttribute("data-group");
+        const val = btn.getAttribute("data-value");
+        const on = state[group] === val;
+        btn.classList.toggle("is-selected", on);
+        btn.setAttribute("aria-checked", on ? "true" : "false");
+      });
+
+      // Interests
+      document.querySelectorAll(".pp-interest[data-interest]").forEach(btn => {
+        const tag = btn.getAttribute("data-interest");
+        btn.classList.toggle("is-selected", state.interests.has(tag));
+        btn.setAttribute("aria-pressed", state.interests.has(tag) ? "true" : "false");
+      });
+
+      // Summary chips
+      const chips = [];
+      // Contact chips (optional)
+    
+      if (state.phone) chips.push(["Phone", state.phone]);
+      if (state.email) chips.push(["Email", state.email]);
+      if (state.telegram) chips.push(["Telegram", state.telegram]);
+      if (state.goal) chips.push(["Goal", LABELS.goal[state.goal] || state.goal]);
+      if (state.level) chips.push(["Level", LABELS.level[state.level] || state.level]);
+      if (state.duration) chips.push(["Duration", LABELS.duration[state.duration] || state.duration]);
+      if (state.transport) chips.push(["Transport", LABELS.transport[state.transport] || state.transport]);
+
+      const interests = Array.from(state.interests).map(k => LABELS.interests[k] || k);
+      if (interests.length) chips.push(["Interests", interests.join(", ")]);
+
+      $chips.innerHTML = chips.length
+        ? chips.map(([k, v]) => `<span class="pp-chip"><em>${k}:</em> ${escapeHTML(v)}</span>`).join("")
+        : "<span class=\"pp-note\">Nothing selected yet.</span>";
+
+      // Status
+      const complete = Boolean(state.goal && state.level && state.duration && state.transport);
+      const hasAny = Boolean(state.name || state.phone || state.email || state.telegram || state.notes || state.goal || state.level || state.duration || state.transport || state.interests.size);
+
+      if (state.saved) {
+        $status.className = "pp-status ok";
+        $status.textContent = "✅ Saved";
+        $summary.innerHTML = complete
+          ? "Profile saved. Now open the main page — recommendations will adapt to your choices."
+          : "Profile saved, but not fully completed. You can fill it in for better accuracy.";
+      } else {
+        $status.className = "pp-status " + (hasAny ? "warn" : "warn");
+        $status.textContent = hasAny ? "⚠️ Not saved" : "⚠️ Not filled";
+        $summary.innerHTML = hasAny
+          ? "You selected options, but haven’t clicked <strong>“Save”</strong> yet."
+          : "Fill in and click <strong>“Save”</strong>.";
+      }
+    }
+
+    function escapeHTML(str) {
+      return String(str)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function loadIntoState(p) {
+      // contact / profile details
+      state.name = p?.name || "";
+      state.phone = p?.phone || "";
+      state.email = p?.email || "";
+      state.telegram = p?.telegram || "";
+      state.notes = p?.notes || "";
+
+      // travel preferences
+      state.goal = p?.goal || "";
+      state.level = p?.level || "";
+      state.duration = p?.duration || "";
+      state.transport = p?.transport || "";
+      state.interests = new Set(Array.isArray(p?.interests) ? p.interests : []);
+      state.saved = Boolean(p);
+
+      syncInputsFromState();
+    }
+
+    // ===== Event wiring =====
+    function wireInput(el, key) {
+      if (!el) return;
+      el.addEventListener("input", () => {
+        state[key] = el.value;
+        state.saved = false;
+        updateSelectedUI();
+      });
+    }
+
+    wireInput($name, "name");
+    wireInput($phone, "phone");
+    wireInput($email, "email");
+    wireInput($telegram, "telegram");
+    wireInput($notes, "notes");
+
+    document.querySelectorAll(".pp-opt[data-group]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const group = btn.getAttribute("data-group");
+        const val = btn.getAttribute("data-value");
+        // toggle off if clicked again
+        state[group] = (state[group] === val) ? "" : val;
+        state.saved = false;
+        updateSelectedUI();
+      });
+    });
+
+    document.querySelectorAll(".pp-interest[data-interest]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const tag = btn.getAttribute("data-interest");
+        if (state.interests.has(tag)) state.interests.delete(tag);
+        else state.interests.add(tag);
+        state.saved = false;
+        updateSelectedUI();
+      });
+    });
+
+    document.getElementById("ppSave")?.addEventListener("click", () => {
+      const profile = {
+        // contact / profile details
+        name: state.name.trim(),
+        phone: state.phone.trim(),
+        email: state.email.trim(),
+        telegram: state.telegram.trim(),
+        notes: state.notes.trim(),
+
+        // travel preferences
+        goal: state.goal,
+        level: state.level,
+        duration: state.duration,
+        transport: state.transport,
+        interests: Array.from(state.interests),
+      };
+      setProfile(profile);
+      state.saved = true;
+      updateSelectedUI();
+      toast("Profile saved");
+    });
+
+    document.getElementById("ppReset")?.addEventListener("click", () => {
+      clearProfile();
+      loadIntoState(null);
+      updateSelectedUI();
+      toast("Profile reset");
+    });
+
+    document.getElementById("ppClearOnlyInterests")?.addEventListener("click", () => {
+      state.interests.clear();
+      state.saved = false;
+      updateSelectedUI();
+      toast("Interests cleared");
+    });
+
+    // Initial load
+    loadIntoState(getProfile());
+    updateSelectedUI();
+  </script>
+</body>
+</html>
