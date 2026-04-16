@@ -398,7 +398,7 @@
 
             /* Мини-мета по доступности и времени (можешь расширять) */
             const PLACE_META = {
-                "Алтай (Катон-Карагай)": { minDays: 3, access: ["car", "tour"] },
+                "Катон-Карагай": { minDays: 3, access: ["car", "tour"] },
                 "Восточный Алтай": { minDays: 3, access: ["car", "tour"] },
                 "Катон-Карагайское плато": { minDays: 2, access: ["car", "tour"] },
                 "Маркаколь": { minDays: 3, access: ["car", "tour"] },
@@ -1178,7 +1178,10 @@
             "Алтай (Зыряновск)": [49.72246, 84.28093],
             "Серебрянск": [49.6819, 83.2847],
             "Шемонаиха": [50.6297, 81.9065],
-            "Глубокое": [50.1450, 82.3110]
+            "Глубокое": [50.1450, 82.3110],
+            "Самарское": [49.02287, 83.36666],
+            "Улкен Нарын": [49.20860, 84.51164],
+            "Курчум": [48.56393, 83.64840],
         };
 
         const MAX_POINTS = 6; // всего точек в маршруте: старт + остановки + финиш
@@ -1219,16 +1222,23 @@
         }).addTo(map);
 
         router.on("routesfound", function (e) {
-            const route = e.routes[0];
-            const km = (route.summary.totalDistance / 1000).toFixed(1);
-            const min = Math.round(route.summary.totalTime / 60);
+    const route = e.routes[0];
+    const km = (route.summary.totalDistance / 1000).toFixed(1);
+    const min = Math.round(route.summary.totalTime / 60);
 
-            infoBox.style.display = "block";
-            infoBox.innerHTML = `
-                                Расстояние: <b>${km} км</b><br>
-                                Время в пути: <b>${min} мин</b>
-                            `;
-        });
+    // 👉 средний расход (можешь менять)
+    const fuelPer100 = 8; // литров на 100 км
+
+    // 👉 расчет топлива
+    const fuel = ((km / 100) * fuelPer100).toFixed(1);
+
+    infoBox.style.display = "block";
+    infoBox.innerHTML = `
+        Расстояние: <b>${km} км</b><br>
+        Время в пути: <b>${min} мин</b><br>
+        Расход топлива: <b>${fuel} л</b>
+    `;
+});
 
         // ===== multi-stop логика =====
         const stops = []; // массив названий промежуточных точек
