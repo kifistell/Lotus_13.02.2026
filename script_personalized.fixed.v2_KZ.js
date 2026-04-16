@@ -17,7 +17,7 @@ function placeCard(title, img, text, pos = "center 35%") {
 const places = [
   // MOUNTAINS & RANGES
   {
-    name: "Алтай (Катонқарағай)",
+    name: "Алтай ",
     type: "mountains",
     content: placeCard(
       "Алтай ",
