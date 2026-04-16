@@ -20,7 +20,7 @@ const places = [
     name: "Altai (Katon-Karagay)",
     type: "mountains",
     content: placeCard(
-      "Altai (Katon-Karagay)",
+      "Altai ",
       "altai.jpeg",
       "The Altai mountain area is one of the region’s key natural highlights and a strong base for eco‑tourism. Pine forests, high‑mountain valleys, and a dense river network create a wide variety of routes. Plan about 2–4 days to include viewpoints and short hikes. The best seasons are late spring, summer, and early autumn, when weather is more stable and visibility is at its best. Follow protected‑area rules and plan logistics in advance, because the location is remote.",
       "center 60%"
