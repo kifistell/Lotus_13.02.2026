@@ -1221,17 +1221,24 @@
             }
         }).addTo(map);
 
-        router.on("routesfound", function (e) {
-            const route = e.routes[0];
-            const km = (route.summary.totalDistance / 1000).toFixed(1);
-            const min = Math.round(route.summary.totalTime / 60);
+       router.on("routesfound", function (e) {
+    const route = e.routes[0];
+    const km = (route.summary.totalDistance / 1000).toFixed(1);
+    const min = Math.round(route.summary.totalTime / 60);
 
-            infoBox.style.display = "block";
-            infoBox.innerHTML = `
-                                Distance: <b>${km} km</b><br>
-                                Travel time: <b>${min} min</b>
-                            `;
-        });
+    // 👉 средний расход (можешь менять)
+    const fuelPer100 = 8; // литров на 100 км
+
+    // 👉 расчет топлива
+    const fuel = ((km / 100) * fuelPer100).toFixed(1);
+
+    infoBox.style.display = "block";
+    infoBox.innerHTML = `
+        Distance: <b>${km} km</b><br>
+        Travel time: <b>${min} min</b><br>
+        Fuel consumption: <b>${fuel} l</b>
+    `;
+});
 
         // ===== multi-stop логика =====
         const stops = []; // массив названий промежуточных точек
