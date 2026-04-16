@@ -17,7 +17,7 @@ function placeCard(title, img, text, pos = "center 35%") {
 const places = [
     // ГОРЫ И ХРЕБТЫ
     {
-        name: "Алтай (Катон-Карагай)",
+        name: "Алтай ",
         type: "mountains",
         content: placeCard(
             "Алтай",
