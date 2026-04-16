@@ -17,7 +17,7 @@ function placeCard(title, img, text, pos = "center 35%") {
 const places = [
   // MOUNTAINS & RANGES
   {
-    name: "Altai (Katon-Karagay)",
+    name: "Altai ",
     type: "mountains",
     content: placeCard(
       "Altai ",
